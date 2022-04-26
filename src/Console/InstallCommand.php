@@ -3,6 +3,7 @@
 namespace QuetzalStudio\Maple\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class InstallCommand extends Command
 {
@@ -48,8 +49,7 @@ class InstallCommand extends Command
         copy(__DIR__ . '/../../stubs/resources/js/bootstrap.js', resource_path('js/bootstrap.js'));
         copy(__DIR__ . '/../../stubs/resources/views/app.blade.php', resource_path('views/app.blade.php'));
 
-        copy(__DIR__ . '/../../stubs/public/dist/.gitignore', public_path('dist/.gitignore'));
-        copy(__DIR__ . '/../../stubs/public/dist/assets/.gitignore', public_path('dist/assets/.gitignore'));
+        File::copyDirectory(__DIR__ . '/../../stubs/public/dist', public_path('dist'));
 
         if (file_exists(base_path('webpack.mix.js'))) {
             unlink(base_path('webpack.mix.js'));
