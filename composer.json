@@ -1,0 +1,26 @@
+{
+    "name": "quetzal-studio/maple",
+    "license": "MIT",
+    "require": {
+        "php": "^8.0",
+        "laravel/jetstream": "^2.7",
+        "spatie/laravel-permission": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "QuetzalStudio\\Maple\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "QuetzalStudio\\Maple\\MapleServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

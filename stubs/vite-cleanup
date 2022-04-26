@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+const { exec } = require('child_process')
+const { join } = require('path')
+
+setTimeout(() => {
+  exec(`git checkout -- ${join(__dirname, 'public/dist/.gitignore')}`)
+}, 100)
+
+setTimeout(() => {
+  exec(`git checkout -- ${join(__dirname, 'public/dist/assets/.gitignore')}`)
+}, 200)
