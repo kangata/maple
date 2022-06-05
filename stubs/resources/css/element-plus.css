@@ -1,0 +1,41 @@
+.el-pagination {
+    flex: none;
+}
+
+.el-pagination li {
+    @apply mx-0.5 font-semibold;
+}
+
+.el-pagination li.number,
+.el-pagination li.more svg {
+    @apply text-gray-400;
+}
+
+.el-pagination li.number.is-active {
+    @apply bg-blue-500 rounded-full text-white;
+}
+
+.el-pagination li.more:hover svg {
+    @apply text-blue-400;
+}
+
+.el-input .el-input__inner {
+    box-shadow: none;
+}
+
+.search.el-input .el-input__wrapper,
+.search.el-input .el-input__inner {
+    box-shadow: none;
+}
+
+th.el-table__cell .cell {
+    @apply text-gray-400;
+}
+
+td.el-table__cell .cell {
+    @apply text-gray-900;
+}
+
+.el-button--primary {
+    @apply bg-blue-500 border-blue-500 !important;
+}

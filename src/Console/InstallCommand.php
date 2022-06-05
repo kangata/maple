@@ -34,6 +34,7 @@ class InstallCommand extends Command
 
         $this->updateNodePackages(function ($packages) {
             return [
+                '@heroicons/vue' => '^1.0.6',
                 '@vitejs/plugin-vue' => '^2.3.1',
                 'autoprefixer' => '^10.4.5',
                 'postcss' => '^8.4.12',
@@ -48,6 +49,8 @@ class InstallCommand extends Command
         copy(__DIR__ . '/../../stubs/resources/js/app.js', resource_path('js/app.js'));
         copy(__DIR__ . '/../../stubs/resources/js/bootstrap.js', resource_path('js/bootstrap.js'));
         copy(__DIR__ . '/../../stubs/resources/views/app.blade.php', resource_path('views/app.blade.php'));
+
+        File::copyDirectory(__DIR__ . '/../../stubs/resources/js/Maple', resource_path('js/Maple'));
 
         File::copyDirectory(__DIR__ . '/../../stubs/public/dist', public_path('dist'));
 
