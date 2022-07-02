@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { ElInput } from 'element-plus'
 import { AdjustmentsIcon, SearchIcon } from '@heroicons/vue/outline'
 
-const props = defineProps({
+defineProps({
   modelValue: String,
   placeholder: {
     type: String,
@@ -23,12 +23,22 @@ const emit = defineEmits([
 
 const showAdvancedFilter = ref(false)
 
-function handleInput(val) {
-  emit('update:modelValue', val)
-  emit('input', val)
+const debounce = (callback, wait) => {
+  let timeoutId = null;
+  return (...args) => {
+    window.clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => {
+      callback.apply(null, args);
+    }, wait);
+  };
 }
 
-function toggleAdvacedFilter() {
+const handleInput = debounce((val) => {
+  emit('update:modelValue', val)
+  emit('input', val)
+}, 500)
+
+const toggleAdvacedFilter = () => {
   showAdvancedFilter.value = !showAdvancedFilter.value
 
   emit('toggle-filter', showAdvancedFilter.value)
@@ -36,11 +46,11 @@ function toggleAdvacedFilter() {
 </script>
 
 <template>
-  <div class="flex items-center rounded-full bg-gray-200" :class="{ 'bg-blue-500': showAdvancedFilter }">
+  <div class="flex items-center">
     <div class="flex-1 bg-white py-1 px-3 rounded-l-full" :class="{ 'rounded-r-full': !advancedFilter }">
-      <el-input v-model="modelValue" class="search" :prefix-icon="SearchIcon" :placeholder="placeholder" clearable @input="handleInput" />
+      <ElInput v-model="modelValue" class="search" :prefix-icon="SearchIcon" :placeholder="placeholder" clearable @input="handleInput" />
     </div>
-    <div v-if="advancedFilter" class="py-1 pl-3 pr-4 rounded-r-full flex flex-col justify-center">
+    <div v-if="advancedFilter" class="py-2.5 pl-3 pr-4 rounded-r-full flex flex-col justify-center bg-gray-200" :class="{ 'bg-blue-500': showAdvancedFilter }">
       <button type="button" @click="toggleAdvacedFilter">
         <AdjustmentsIcon class="h-5 w-5 stroke-gray-400" :class="{ 'stroke-white': showAdvancedFilter }" />
       </button>
