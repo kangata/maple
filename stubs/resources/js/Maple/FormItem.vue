@@ -2,7 +2,8 @@
 import JetLabel from '@/Jetstream/Label.vue'
 
 const props = defineProps({
-  label: String
+  label: String,
+  error: String
 })
 </script>
 
@@ -12,5 +13,6 @@ const props = defineProps({
     <div class="mt-1">
       <slot></slot>
     </div>
+    <p v-show="error" class="text-red-500 text-sm mt-1">{{ error }}</p>
   </div>
 </template>
