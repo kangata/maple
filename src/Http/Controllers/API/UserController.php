@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use QuetzalStudio\Maple\Http\Requests\User\StoreRequest;
 use QuetzalStudio\Maple\Http\Requests\User\UpdateRequest;
@@ -92,9 +93,15 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
+        DB::beginTransaction();
+
         try {
             $user->delete();
+
+            DB::commit();
         } catch (Exception $e) {
+            DB::rollback();
+
             Log::error($e);
 
             return response()->json([
