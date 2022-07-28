@@ -28,7 +28,7 @@ const handleSearch = (val) => {
   <div class="flex justify-between items-center mb-4 -mx-2">
     <div class="w-full md:w-96 p-2">
       <Search
-        v-model="search"
+        :model-value="search"
         :advanced-filter="advancedFilter"
         @input="handleSearch"
         @toggle-filter="showFilter = !showFilter" />

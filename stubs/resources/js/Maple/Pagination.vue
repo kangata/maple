@@ -52,7 +52,7 @@ function onCurrentChange(page) {
         }" class="h-5 w-5" />
       </button>
 
-      <el-pagination v-if="layouts.includes('pager-with-count')" :current-page="props.currentPage" :page-size="props.pageSize" :total="props.total" layout="pager"
+      <el-pagination v-if="layouts.includes('pager') || layouts.includes('pager-with-count')" :current-page="props.currentPage" :page-size="props.pageSize" :total="props.total" layout="pager"
         @current-change="onCurrentChange" />
 
       <button v-if="layouts.includes('next')" :disabled="props.currentPage == props.lastPage" type="button"
